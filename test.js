@@ -1,26 +1,23 @@
-var theme = window.localStorage.currentTheme;
-
-        $('body').addClass(theme);
-
-        if ($("body").hasClass("night")) {
-            $('.dntoggle').addClass('fa-sun-o');
-            $('.dntoggle').removeClass('fa-moon-o');
-        } else {
-            $('.dntoggle').removeClass('fa-sun-o');
-            $('.dntoggle').addClass('fa-moon-o');
-        }
-
-        $('.dntoggle').click(function() {
-            $('.dntoggle').toggleClass('fa-sun-o');
-            $('.dntoggle').toggleClass('fa-moon-o');
-
-            if ($("body").hasClass("night")) {
-                $('body').toggleClass('night');
-                localStorage.removeItem('currentTheme');
-                localStorage.currentTheme = "day";
-            } else {
-                $('body').toggleClass('night');
-                localStorage.removeItem('currentTheme');
-                localStorage.currentTheme = "night";
-            }
-        });
+window.onload=function(){
+  var theme = localStorage.getItem('data-theme');
+  if(theme=='light'){
+    document.documentElement.setAttribute('data-theme', 'light');
+  }else if(theme==''){
+    document.documentElement.setAttribute('data-theme', 'light');
+  }else if(theme=='dark'){
+    document.documentElement.setAttribute('data-theme' , 'dark');
+    document.getElementById("checkbox").checked = true;
+  }
+}
+function toggle(a){
+  if(a.checkbox.checked==true){
+    document.documentElement.classList.add('transition');
+    document.documentElement.setAttribute('data-theme', 'dark');
+    localStorage.setItem('data-theme','dark');
+  }
+  else if(a.checkbox.checked==false){
+    document.documentElement.classList.add('transition');
+    document.documentElement.setAttribute('data-theme', 'light');
+    localStorage.setItem('data-theme','light');
+  }
+};
