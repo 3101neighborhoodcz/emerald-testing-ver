@@ -1,93 +1,97 @@
-@import url('//netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css');
-
+/* light theme colors */
+html{
+  --bg: #FCFCFC;
+  --bg-panel: #EEEEEE;/*box container*/
+  --color-headings: #00ADB5;/*heading*/
+  --color-text: #393e46;/*paragraph*/
+  height:100%;
+  display:grid;
+  align-items:center;
+  justify-content:center;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+/* dark theme colors */
+html[data-theme='dark']{
+  --bg: #232931;
+  --bg-panel: #393E46;
+  --color-headings: #00ADB5;
+  --color-text: #B5B5B5;
+}
 body{
-  background-color: #ececec;
-/* 
-  
-  IF You Need Transition
-    
-  -webkit-transition: all 0.2s;
-  -moz-transition: all 0.2s;
-  transition: all 0.2s;
-  
-*/
-  
-  
+  font-family: 'Montserrat', sans-serif;
+  background-color: var(--bg);
 }
-.night{
-  background-color: #151515;
+/* box container */
+.box{
+  display:grid;
+  grid-template-rows: auto auto;
+  border-radius: 15px;
+  padding:30px;
+  width:60vw;
+  background-color: var(--bg-panel);
+  letter-spacing: 0.05rem;
 }
-.dntoggle{
-  font-size: 28px;
-  border-radius: 100px;
-  background-color: #111111;
-  padding: 15px;
-  color:#fcfcfc;
-  box-shadow: 1px 2px 6px rgba(0,0,0,.3);
-  cursor: pointer;
-  
-  position: fixed;
-  bottom:20px;
-  right: 20px;
-
-  -webkit-transition: all 0.2s;
-  -moz-transition: all 0.2s;
-  transition: all 0.2s;
+h2{
+  font-size: 2.18rem;/*35px*/
+  margin: 20px 0;
+  color:var(--color-headings);
 }
-.fa-moon-o:before{
-  padding:0 2px;
+div h2 span{
+  float: right;
 }
-.fa-sun-o{
-  background-color: #212121;
-  color:#ccc;
+div p{
+  font-size: 1.25rem;/*20px*/
+  margin-top: 5px;
+  margin-bottom: 20px;
+  color: var(--color-text);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Optional  */
-.content{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  box-shadow: 0 4px 24px 0 #ddd;
-  box-sizing: border-box;
-  padding: 20px;
-  font-family: arial;
-  
+form{  
+  margin-top: 0.7rem;
 }
-
-.content h1{
-  font-size: 58px;
-  font-weight: 100;
-  margin: 0 0 20px;
-  
+/* checkbox toggler */
+input[type=checkbox]{
+	height: 0;
+  width: 0;
+	visibility: hidden;
 }
-
-.content .text{
-  line-height: 23px;
-  font-size: 15px;
-  color: #444;
+label {
+	cursor: pointer;
+	text-indent: -9999px;
+	width: 52px;
+	height: 27px;
+	background: grey;
+	float: right;
+	border-radius: 100px;
+	position: relative;
 }
-
-.night *{
-  color: #999 !important;
-  box-shadow: none;
+label:after {
+	content: '';
+	position: absolute;
+	top: 3px;
+	left: 3px;
+	width: 20px;
+	height: 20px;
+	background: #fff;
+	border-radius: 90px;
+	transition: 0.3s;
 }
-
-.night .content{
-  border: 1px solid #999;
+input:checked + label {
+	background: var(--color-headings);
+}
+input:checked + label:after {
+	left: calc(100% - 5px);
+	transform: translateX(-100%);
+}
+label:active:after {
+	width: 45px;
+}
+/* transition */
+html.transition,
+html.transition *,
+html.transition *:before,
+html.transition *:after {
+  transition: all 750ms !important;
+  transition-delay: 0 !important;
 }
